@@ -1,6 +1,7 @@
 package com.logmein.archcomptest
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -17,10 +18,9 @@ class MainFragment : Fragment() {
         return view
     }
 
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = MainViewModel()
+        viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
 
         viewModel?.let {
             it.message.observe(this, Observer {
