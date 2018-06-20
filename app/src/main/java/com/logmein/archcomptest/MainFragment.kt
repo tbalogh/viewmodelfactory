@@ -1,6 +1,7 @@
 package com.logmein.archcomptest
 
 import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -20,7 +21,7 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
+        val viewModel = ViewModelProviders.of(this, MainViewModelFactory("Text from external dependency"))[MainViewModel::class.java]
 
         viewModel?.let {
             it.message.observe(this, Observer {
